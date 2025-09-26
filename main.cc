@@ -12,7 +12,7 @@ g++ -std=c++17 -g main.cc -o app $(pkg-config --cflags --libs gtkmm-4.0 epoxy li
 //#undef GLAPI // Undefine GLAPI to avoid redefinition issues with epoxy
 
 #include <iostream>
-#define _USE_MATH_DEFINES
+//#define _USE_MATH_DEFINES
 #include <cmath>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/glm.hpp>
