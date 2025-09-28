@@ -2367,7 +2367,8 @@ void MyGLArea::generate_cube_with_opencascade()
 class MyWindow : public Gtk::Window
 {
 public:
-    MyWindow()
+    MyWindow(const std::string& step_file = {})
+            : m_file_to_open(step_file)
     {
         set_title("GTKmm4 OpenGL Cube/STEP Viewer - OpenCASCADE Integration with Mouse Control");
         set_default_size(800, 600); // Increase default window size
@@ -2425,9 +2426,26 @@ public:
         auto quit_button = Gtk::make_managed<Gtk::Button>("Quit");
         button_box->append(*quit_button);
         quit_button->signal_clicked().connect(sigc::mem_fun(*this, &MyWindow::on_quit_button_clicked));
+
+        // Tohle načte soubor, pokud byl zadán v parametru
+       // if (!step_file.empty()) {
+       //     m_gl_area->load_step_file(step_file);
+       // }
     }
 
+    void open_step_file(const std::string& filepath) {
+        m_gl_area->load_step_file(filepath);
+    }
 protected:
+
+    void on_show() override {
+        Gtk::Window::on_show();
+        if (!m_file_to_open.empty()) {
+            m_gl_area->load_step_file(m_file_to_open);
+            m_file_to_open.clear(); // otevřít jen jednou
+        }
+    }
+
     void on_load_step_button_clicked()
     {
         auto dialog = Gtk::FileDialog::create();
@@ -2529,10 +2547,37 @@ protected:
 
 private:
     MyGLArea* m_gl_area;
+        std::string m_file_to_open;
 };
+
+class MyApp : public Gtk::Application
+{
+public:
+    MyApp(const Glib::ustring& app_id, Gio::Application::Flags flags)
+    : Gtk::Application(app_id, flags) {}
+
+protected:
+    void on_activate() override {
+        auto window = new MyWindow();
+        add_window(*window);
+        window->present();
+    }
+
+    void on_open(const Gio::Application::type_vec_files& files, const Glib::ustring&) override {
+        for (const auto& file : files) {
+            auto path = file->get_path();
+            auto window = new MyWindow(path);
+            add_window(*window);
+            window->present();
+        }
+    }
+};
+
 
 int main(int argc, char* argv[])
 {
-    auto app = Gtk::Application::create("org.gtkmm.example.OpenGLCubeStepViewer");
-    return app->make_window_and_run<MyWindow>(argc, argv);
+    auto app = Glib::make_refptr_for_instance<MyApp>(
+        new MyApp("org.gtkmm.example.OpenGLCubeStepViewer", Gio::Application::Flags::HANDLES_OPEN)
+    );
+    return app->run(argc, argv);
 }
