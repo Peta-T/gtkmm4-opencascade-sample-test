@@ -1116,8 +1116,9 @@ protected:
         }
     }
 
-    void on_unrealize() override
-    {
+void on_unrealize() override
+{
+    if (get_realized()) {  // <--- DŮLEŽITÉ
         try {
             make_current();
             throw_if_error();
@@ -1137,10 +1138,10 @@ protected:
         } catch (const Gdk::GLError& gle) {
             std::cerr << "GLArea error on unrealize: " << gle.domain() << "-" << gle.code() << "-" << gle.what() << std::endl;
         }
-
-        Gtk::GLArea::on_unrealize();
     }
 
+    Gtk::GLArea::on_unrealize();
+}
     // Method to handle resize
     void on_resize(int width, int height) override
     {
