@@ -33,6 +33,7 @@ Type/paste
    zip \\ \
    unzip \\ \
    git \\ \
+   mingw-w64-x86_64-glm \\ \
    mingw-w64-x86_64-opencascade \\ \
    --needed
 
