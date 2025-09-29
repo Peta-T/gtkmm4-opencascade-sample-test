@@ -46,7 +46,7 @@ Before continuing you may change to another directory. It easiest to type cd fol
 6.) Build it - type on command line:
 ------------------------------------
 
-   g++ -std=c++20 main.cc \`pkg-config --cflags --libs gtkmm-4.0 \` -o app -g
+   g++ -std=c++17 -g main.cc -o app $(pkg-config --cflags --libs gtkmm-4.0 epoxy librsvg-2.0) -I/usr/include/gtk-4.0 -I/usr/include/opencascade -I/usr/include/opencascade/Standard -I/mingw64/include/gtk-4.0 -I/mingw64/include/opencascade -I/mingw64/include/opencascade/Standard -I/usr/include/gtk-4.0/gdk/x11 -L/usr/local/lib/x86_64-linux-gnu -lTKBinL -lTKBin -lTKBinTObj -lTKBinXCAF -lTKBool -lTKBO -lTKBRep -lTKCAF -lTKCDF -lTKDCAF -lTKDECascade -lTKDEGLTF -lTKDEIGES -lTKDEOBJ -lTKDEPLY -lTKDE -lTKDESTEP -lTKDESTL -lTKDEVRML -lTKDraw -lTKernel -lTKExpress -lTKFeat -lTKFillet -lTKG2d -lTKG3d -lTKGeomAlgo -lTKGeomBase -lTKHLR -lTKLCAF -lTKMath -lTKMesh -lTKMeshVS -lTKOffset -lTKOpenGl -lTKOpenGlTest -lTKPrim -lTKQADraw -lTKRWMesh -lTKService -lTKShHealing -lTKStdL -lTKStd -lTKTObjDRAW -lTKTObj -lTKTopAlgo -lTKTopTest -lTKV3d -lTKVCAF -lTKViewerTest -lTKXCAF -lTKXDEDRAW -lTKXMesh -lTKXmlL -lTKXml -lTKXmlTObj -lTKXmlXCAF -lTKXSBase -lTKXSDRAWDE -lTKXSDRAWGLTF -lTKXSDRAWIGES -lTKXSDRAWOBJ -lTKXSDRAWPLY -lTKXSDRAW -lTKXSDRAWSTEP -lTKXSDRAWSTL -lTKXSDRAWVRML  -D_USE_MATH_DEFINES
 
 7.) Run app - type on command line:
 -----------------------------------
