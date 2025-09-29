@@ -1,6 +1,8 @@
 # gtkmm4 easy Application with Opencascade sample test step file viewer
 This simplified sample C++ code which try show possible using gtkmm4  with integraton Opencascade this code is possible to build and run on Debian13 or on Windows in MSYS2 enviroment.
 
+![Screenschot](Screenshot.png)
+
 Building on Windows:
 ====================
 
