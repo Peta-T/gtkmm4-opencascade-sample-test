@@ -35,6 +35,9 @@ Type/paste
    git \\ \
    mingw-w64-x86_64-glm \\ \
    mingw-w64-x86_64-opencascade \\ \
+   mingw-w64-ucrt-x86_64-gtkmm-4.0 \\ \
+   mingw-w64-ucrt-x86_64-yaml-cpp \\ \
+   mingw-w64-ucrt-x86_64-librsvg \\ \
    --needed
 
 When prompted, just hit return. Sit back and wait for it to install what’s almost a complete linux environment.
