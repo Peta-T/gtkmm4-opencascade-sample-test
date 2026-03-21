@@ -12,7 +12,7 @@ Download and run the msys2 installer from http://msys2.github.io/ Tested only wi
 
 2.) Start MSYS console
 ----------------------
-Launch the Start Menu item “MSYS2 mingw 64 bit” you should be greeted with a console window. All steps below refer to what you should type into that window.
+Launch the Start Menu item “MSYS2 UCRT64” you should be greeted with a console window. All steps below refer to what you should type into that window.
 
 3.) Install updates
 -------------------
@@ -245,6 +245,8 @@ Type/paste
     libyaml-cpp-dev \\ \
     librsvg2-dev \\ \
     git \\ \
+    libgl-dev \\ \ 
+    libegl-dev \\ \
     pkg-config \
 
 When prompted, just hit return. Sit back and wait for it to install what’s almost a complete linux environment.
