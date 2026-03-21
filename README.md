@@ -29,7 +29,7 @@ Type/paste
    pacman -S \\ \
    mingw-w64-x86_64-gcc \\ \
    mingw-w64-x86_64-pkgconf \\ \
-   mingw-w64-x86_64-gtkmm4 \\ \
+   mingw-w64-x86_64-gtkmm-4.0 \\ \
    zip \\ \
    unzip \\ \
    git \\ \
