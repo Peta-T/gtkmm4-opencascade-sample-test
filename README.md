@@ -245,7 +245,7 @@ Type/paste
     libyaml-cpp-dev \\ \
     librsvg2-dev \\ \
     git \\ \
-    libgl-dev \\ \ 
+    libgl-dev \\ \
     libegl-dev \\ \
     pkg-config \
 
