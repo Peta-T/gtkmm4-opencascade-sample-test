@@ -27,18 +27,17 @@ if it tells you to close restart msys, close the console window and start it aga
 Type/paste
 
    pacman -S \\ \
-   mingw-w64-x86_64-gcc \\ \
-   mingw-w64-x86_64-pkgconf \\ \
-   mingw-w64-x86_64-gtkmm-4.0 \\ \
-   zip \\ \
-   unzip \\ \
-   git \\ \
-   mingw-w64-x86_64-glm \\ \
-   mingw-w64-x86_64-opencascade \\ \
-   mingw-w64-ucrt-x86_64-gtkmm-4.0 \\ \
-   mingw-w64-ucrt-x86_64-yaml-cpp \\ \
-   mingw-w64-ucrt-x86_64-librsvg \\ \
-   --needed
+mingw-w64-ucrt-x86_64-gcc \\ \
+mingw-w64-ucrt-x86_64-pkgconf \\ \
+mingw-w64-ucrt-x86_64-gtkmm-4.0 \\ \
+mingw-w64-ucrt-x86_64-opencascade \\ \
+mingw-w64-ucrt-x86_64-yaml-cpp \\ \
+mingw-w64-ucrt-x86_64-librsvg \\ \
+mingw-w64-ucrt-x86_64-libepoxy \\ \
+git \\ \
+zip \\ \
+unzip \\ \
+--needed
 
 When prompted, just hit return. Sit back and wait for it to install what’s almost a complete linux environment.
 
