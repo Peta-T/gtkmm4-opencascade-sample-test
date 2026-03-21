@@ -61,4 +61,66 @@ Before continuing you may change to another directory. It easiest to type cd fol
 
    ./gstepview.exe
 
+Building on Debian 13:
+====================
+
+1.) Install dependencies
+------------------------
+Type/paste
+
+   su  \
+   apt update  \
+   apt install \\ \
+    build-essential \\ \
+    libgtkmm-4.0-dev \\ \
+    libocct-data-exchange-dev \\ \
+    libocct-draw-dev \\ \
+    libocct-foundation-dev \\ \
+    libocct-modeling-algorithms-dev \\ \
+    libocct-modeling-data-dev \\ \
+    libocct-ocaf-dev \\ \
+    libocct-visualization-dev \\ \
+    libepoxy-dev \\ \
+    libyaml-cpp-dev \\ \
+    librsvg2-dev \\ \
+    git \\ \
+    pkg-config \
+
+When prompted, just hit return. Sit back and wait for it to install what’s almost a complete linux environment.
+
+Before continuing you may change to another directory. It easiest to type cd followed by a space and drop the folder you want to change to on the window.
+
+2.) Clone gtkmm4-opencascade-sample-test by type/paste on commandline:
+---------------------------------------------------------------------
+
+   git clone https://github.com/Peta-T/gtkmm4-opencascade-sample-test \
+   cd gtkmm4-opencascade-sample-test
+
+3.) Build it - copy/paste on command line:
+------------------------------------
+
+    g++ -std=c++17 -g main.cpp OcctGtkGLAreaViewer.cpp OcctGtkWindowSample.cpp \
+    OcctGlTools.cpp OcctGtkTools.cpp OcctInputBridge.cpp AdvancedMouseTracker.cpp \
+    -o gstepview \
+    $(pkg-config --cflags --libs gtkmm-4.0 epoxy yaml-cpp librsvg-2.0) \
+    -I/usr/include/opencascade \
+    -lTKBinL -lTKBin -lTKBinTObj -lTKBinXCAF -lTKBool -lTKBO -lTKBRep \
+    -lTKCAF -lTKCDF -lTKDCAF -lTKDECascade -lTKDEGLTF -lTKDEIGES \
+    -lTKDEOBJ -lTKDEPLY -lTKDE -lTKDESTEP -lTKDESTL -lTKDEVRML \
+    -lTKDraw -lTKernel -lTKExpress -lTKFeat -lTKFillet -lTKG2d -lTKG3d \
+    -lTKGeomAlgo -lTKGeomBase -lTKHLR -lTKLCAF -lTKMath -lTKMesh \
+    -lTKMeshVS -lTKOffset -lTKOpenGl -lTKOpenGlTest -lTKPrim -lTKQADraw \
+    -lTKRWMesh -lTKService -lTKShHealing -lTKStdL -lTKStd -lTKTObjDRAW \
+    -lTKTObj -lTKTopAlgo -lTKTopTest -lTKV3d -lTKVCAF -lTKViewerTest \
+    -lTKXCAF -lTKXDEDRAW -lTKXMesh -lTKXmlL -lTKXml -lTKXmlTObj \
+    -lTKXmlXCAF -lTKXSBase -lTKXSDRAWDE -lTKXSDRAWGLTF -lTKXSDRAWIGES \
+    -lTKXSDRAWOBJ -lTKXSDRAWPLY -lTKXSDRAW -lTKXSDRAWSTEP -lTKXSDRAWSTL -lTKXSDRAWVRML \
+    -lGL -lEGL
+
+
+4.) Run app - type on command line:
+-----------------------------------
+
+   ./gstepview
+
 
