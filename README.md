@@ -247,7 +247,7 @@ Type/paste
     git \\ \
     libgl-dev \\ \
     libegl-dev \\ \
-    pkg-config \
+    pkg-config 
 
 When prompted, just hit return. Sit back and wait for it to install what’s almost a complete linux environment.
 
