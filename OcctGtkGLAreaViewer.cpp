@@ -674,6 +674,8 @@ static void dumpRawXCAFStructure(const TDF_Label& label, const Handle(XCAFDoc_Sh
 {
     std::string indent(depth * 4, ' ');
 
+    TCollection_AsciiString entryStr;
+
     TDF_Tool::Entry(label, entryStr);
 
     Handle(TDataStd_Name) aNodeName;
