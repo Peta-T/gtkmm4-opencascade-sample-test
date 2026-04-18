@@ -29,9 +29,14 @@
 #include <StdSelect_BRepOwner.hxx>
 #include <Prs3d_ShadingAspect.hxx>
 #include <XCAFDoc_DocumentTool.hxx>
+#include <Graphic3d_ClipPlane.hxx>
+#include <gtkmm/popovermenu.h>
+#include <giomm/simpleactiongroup.h>
+#include <gtkmm/gestureclick.h>
 
 #include <map>
 #include <string>
+#include <vector>
 
 class OcctInputBridge;
 
@@ -47,20 +52,37 @@ public:
   const Handle(V3d_View)& View() const { return myView; }
   const Handle(AIS_InteractiveContext)& Context() const { return myContext; }
   const TCollection_AsciiString& GetGlInfo() const { return myGlInfo; }
+  void toggleClippingPlane();
+  void disableClippingPlane();
+  void drawOriginAxes();
 
   // New STEP/XCAF methods
   bool loadStepFile(const Glib::ustring& filePath,
                     Glib::RefPtr<Gtk::TreeStore>& treeModel,
                     const Gtk::TreeModelColumn<Glib::ustring>& colName,
                     const Gtk::TreeModelColumn<Glib::ustring>& colType,
-                    const Gtk::TreeModelColumn<int>& colId);
+                    const Gtk::TreeModelColumn<int>& colId,
+                    const Gtk::TreeModelColumn<bool>& colVisible);
 
   void selectShapeById(int id);
   void fitToShapeById(int id);
   int getSelectedShapeId();
+  void setShapeVisibility(int id, bool visible);
 
   // NEW: Signal for sending status messages to the window
   sigc::signal<void(const Glib::ustring&)> signal_status_message;
+  sigc::signal<void(int)> signal_locate_in_tree;
+
+  private:
+    Handle(Graphic3d_ClipPlane) m_clipPlane;
+    int m_clipState = 0;
+    Gtk::PopoverMenu m_contextMenu;
+    Glib::RefPtr<Gio::SimpleActionGroup> m_actionGroup;
+    Glib::RefPtr<Gtk::GestureClick> m_rightClickGesture;
+    int m_contextMenuTargetId = -1;
+
+    // Zpracování pravého kliknutí
+    void onRightClick(int n_press, double x, double y);
 
 protected:
   // Input handling methods
@@ -105,6 +127,8 @@ protected:
   std::map<int, TopLoc_Location> m_loc_map;
   std::map<int, int>             m_depth_map;
   std::map<int, TopoDS_Shape>    m_subshape_map;
+  std::map<int, Handle(AIS_InteractiveObject)> m_display_map;
+  std::map<int, std::vector<int>> m_tree_hierarchy;
 
   int m_next_id = 1;
   bool m_is_wireframe = false;
